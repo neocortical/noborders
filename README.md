@@ -1,6 +1,6 @@
 # NoBorders
-### Remove borders from screencapped images.
-NoBorders is a Go library and command line tool designed to remove borders and status bars from screencapped images. Example: 
+### Remove borders from screenshotted images.
+NoBorders is a Go library and command line tool designed to remove borders and status bars from screenshotted images. Example: 
 
 ### Before:
 <img width="250" src="doc/gopher_before.png" />
@@ -53,3 +53,19 @@ Disclamer: I am not an image processing person. There is probably a lot of estab
 I originally wrote this with a very naive algorithm that looked at the first pixel in a row or column and elimate the row/column if all of the other pixels are similar. That worked pretty well, but it's easy to create pathological failure cases and it was also very bad at removing mobile phone status bars, browser location bars, etc. So I moved on to use row/column entropy, which is super-good at removing status bars, but often fails to get rid of areas right around the target image due to aliasing and compression artifacts. As a solution, I added a variance calculation, which when coupled with entropy seems to work out pretty well.
 
 This library functions pretty badly when the target image is lineart. I would love to hear solutions for this. 
+
+A note on multipass mode. The motivation here is to be able to deal with images that have been screenshotted multiple times, resulting in layers of verticle and horizontal borders. To illustrate, I screenshotted an image multiple times: 
+
+<img width="250" src="doc/multipass.png" />
+
+Here's the output of `noborder` with default settings. It performs better than I expected it to, but it still leaves some black border: 
+```
+$ noborders doc/multipass.png doc/multipass_1pass.png
+```
+<img width="250" src="doc/multipass_1pass.png" />
+
+Here's the result of using multipass mode. The remaining black border is gone: 
+```
+$ noborders -multipass doc/multipass.png doc/multipass_MULTIPASS.png
+```
+<img width="250" src="doc/multipass_MULTIPASS.png" />
