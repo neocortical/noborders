@@ -58,7 +58,7 @@ A note on multipass mode. The motivation here is to be able to deal with images 
 
 <img width="250" src="doc/multipass.png" />
 
-Here's the output of `noborder` with default settings. It performs better than I expected it to, but it still leaves some black border: 
+Here's the output of running **noborders** with default settings. It performs better than I expected it to, but it still leaves some black border: 
 ```
 $ noborders doc/multipass.png doc/multipass_1pass.png
 ```
