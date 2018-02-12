@@ -13,7 +13,7 @@ $ noborders gopher_before.png gopher_after.png
 ### After:
 <img width="182" src="doc/gopher_after.png" />
 
-It works by inspecting the entropy and variance of the 1-pixel rows and columns of an image and those that do not appear to be a part of the target image.
+It works by inspecting the entropy and variance of the 1-pixel rows and columns of an image and removing those that do not appear to be a part of the target image.
 
 ## Installation
 ```
